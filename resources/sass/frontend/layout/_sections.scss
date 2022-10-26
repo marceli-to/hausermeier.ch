@@ -1,0 +1,27 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: layout/sections
+ * -----------------------------------------------------------------------------
+ */
+
+%content {
+
+  .content-visual {
+    margin-bottom: $space-xs;
+    @include bp-md() {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    @extend %anchor-underline;
+    color: $color-black;
+  }
+}
+
+%content-extra-top-spacing {
+  padding-top: 35px;
+  @include bp-md() {
+    padding-top: calc(#{$space-xxl} + 1px);
+  }
+}

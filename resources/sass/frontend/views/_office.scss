@@ -1,0 +1,61 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: views/office
+ * -----------------------------------------------------------------------------
+ */
+
+.content-office {
+  @extend %content;
+  padding-bottom: $space-xs;
+
+  @include bp-md() {
+    padding-bottom: $space-xl;
+  }
+
+  .content {
+    margin-bottom: $space-huge;
+    margin-top: $space-xs;
+
+    &.is-last {
+      margin-bottom: 0;
+    }
+  }
+
+  article {
+    border-bottom: 1px solid $color-black;
+    margin-bottom: $space-sm;
+    padding-bottom: $space-sm;
+
+    // &:last-of-type {
+    //   margin-bottom: 0;
+    // }
+
+    @include bp-md() {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+
+      &.employee {
+        margin-bottom: $space-md;
+      }
+    }
+
+    h3 {
+      @include font-light();
+      @include font-size($fs-xl);
+    }
+  }
+
+  .biography {
+    figure {
+      margin-bottom: $space-xxs;
+      margin-top: $space-xs;
+      max-width: 70%;
+
+      @include bp-md() {
+        margin-top: $space-md;
+        max-width: none;
+      }
+    }
+  }
+}

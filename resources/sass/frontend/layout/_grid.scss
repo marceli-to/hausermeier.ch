@@ -1,0 +1,93 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: layout/grid
+ * -----------------------------------------------------------------------------
+ *
+ */
+
+.cssgrid {
+  %grid {
+    @include bp-md() {
+      display: grid;
+      grid-column-gap: $grid-gap-md;
+      grid-row-gap: $grid-gap-sm;
+    }
+  }
+
+  //%grid-2x1,
+  .grid-2x1 {
+    @extend %grid;
+    @include bp-md() {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  //%grid-3x1,
+  .grid-3x1 {
+    @extend %grid;
+    @include bp-md() {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  // %grid-4x1,
+  .grid-4x1 {
+    @extend %grid;
+    @include bp-md() {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+} 
+
+.no-cssgrid {
+  .grid-2x1 {
+    @extend %clearfix;
+    @include bp-md() {
+      > article,
+      > div {
+        float: left;
+        margin-bottom: $space-xs !important;
+        margin-right: $space-sm;
+        width: calc(50% - 8px);
+  
+        &:nth-child(2n+2) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  .grid-3x1 {
+    @extend %clearfix;
+    @include bp-md() {
+      > article,
+      > div {
+        float: left;
+        margin-bottom: $space-xs !important;
+        margin-right: $space-sm;
+        width: calc(33.33333% - 10px);
+  
+        &:nth-child(3n+3) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  .grid-4x1 {
+    @extend %clearfix;
+    @include bp-md() {
+      > article,
+      > div {
+        float: left;
+        margin-bottom: $space-xs !important;
+        margin-right: $space-sm;
+        width: calc(25% - 12px);
+  
+        &:nth-child(4n+4) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

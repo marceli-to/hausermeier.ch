@@ -1,0 +1,55 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/images
+ * -----------------------------------------------------------------------------
+ *
+ * Various classes for image elements
+ */
+
+%is-responsive,
+.is-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+%object-fit-cover,
+.object-fit-cover {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.is-video {
+  display: block;
+  position: relative;
+  z-index: 10;
+
+  &:after {
+    content: '';
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 50px solid $color-white;
+    display: block;
+    left: calc(50% - 25px);
+    position: absolute;
+    top: calc(50% - 30px);
+    width: 0; 
+    z-index: 20;
+    height: 0; 
+
+
+    @include bp-md() {
+      border-top: 36px solid transparent;
+      border-bottom: 36px solid transparent;
+      border-left: 60px solid $color-white;
+      left: calc(50% - 30px);
+      position: absolute;
+      top: calc(50% - 36px);
+  
+    }
+
+  }
+}

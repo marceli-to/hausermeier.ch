@@ -1,0 +1,25 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/logout
+ * -----------------------------------------------------------------------------
+ */
+
+ .icon-logout {
+    @extend %icon-dashboard;
+    background-image: url($url-icons + 'logout.svg');
+    background-size: 18px 18px;
+    background-position: center left;
+    display: block;
+    //bottom: 0;
+    @include responsive-prop('bottom', $space-md);
+    color: $color-medium-grey;
+    @include font-size($fs-xs);
+    height: 20px;
+    @include responsive-prop('left', $space-md);
+    padding-left: 22px;
+    padding-top: 2px;
+    margin-top: 40px;
+    position: relative;
+    //top: auto;
+    width: auto;
+}

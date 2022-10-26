@@ -1,0 +1,75 @@
+/**
+ * Collapsibles
+ * -----------------------------------------------------------------------------
+ */
+
+.collapsible {
+  width: 100%;
+
+  h2 {
+    margin-bottom: $space-xs;
+    padding-bottom: $space-xs;
+
+    @include bp-md() {
+      margin-bottom: $space-sm;
+      padding-bottom: $space-xxs;
+    }
+  }
+
+  .btn-collapsible {
+    @extend %btn;
+    @extend %btn-bg;
+    background-image: url($url-images + 'chevron-down-lg.svg');
+    background-size: 32px 17px;
+    background-position: top 5px right;
+    box-shadow: none !important;
+    @include font-light();
+    @include font-size($fs-xl);
+    display: block;
+    padding: 0 50px 0 0;
+    text-decoration: none !important;
+    text-shadow: none !important;
+    width: 100%;
+
+    @include bp-md() {
+      background: none !important;
+      cursor: default;
+      padding: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+.collapsible__content {
+  overflow: hidden;
+
+  > div {
+    opacity: 0;
+    transition: opacity .24s ease-in-out;
+  }
+}
+
+.collapsible.is-expanded {
+  
+  .collapsible__content {
+    > div {
+      opacity: 1;
+      transition: opacity .24s ease-in-out;
+    }
+  }
+
+  .btn-collapsible {
+    background-image: url($url-images + 'chevron-up-lg.svg');
+  }
+}
+
+@include bp-md() {
+  .collapsible__content {
+    display: block !important;
+    overflow: hidden;
+    > div {
+      opacity: 1 !important;
+      transition: opacity .24s ease-in-out;
+    }
+  }
+}

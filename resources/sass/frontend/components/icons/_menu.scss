@@ -1,0 +1,105 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/menu
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-menu {
+  @extend %icon;
+  display: block;
+  height: 21px;
+  left: 10px;
+  position: fixed;
+  top: 10px;
+  width: 30px;
+
+  /** fixed burger **/
+  @include bp-sm() {
+    left: 30px;
+    top: 30px;
+  }
+
+  /** fixed burger **/
+  @include bp-lg() {
+    left: calc( (100% - #{$site-max-width})/2 + 30px);
+  }
+
+  /** non fixed burger **/
+  // @include bp-sm() {
+  //   left: 0;
+  //   position: relative;
+  //   top: 0;
+  // }
+
+  span {
+    background-color: #181716;
+    height: 1px;
+    display: block;
+    left: 0;
+    position: absolute;
+    width: 30px;
+
+    &:nth-child(1) {
+      top: 1px;
+    }
+    &:nth-child(2) {
+      top: 10px;      
+    }
+    &:nth-child(3) {
+      top: 19px;   
+    }
+  }
+
+  &.is-active {
+    height: 24px;
+    span {
+      top: 11px;
+      width: 31px;
+
+      &:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      &:nth-child(2) {
+        display: none;
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  @include bp-md() {
+    height: 30px;
+    width: 46px;
+    span {
+      width: 46px;
+      &:nth-child(1) {
+        top: 1px;
+      }
+      &:nth-child(2) {
+        top: 14px;      
+      }
+      &:nth-child(3) {
+        top: 27px;   
+      }
+    }
+
+    &.is-active {
+      height: 36px;
+      span {
+        top: 14px;
+        width: 42px;
+  
+        &:nth-child(1) {
+          transform: rotate(45deg);
+        }
+        &:nth-child(2) {
+          display: none;
+        }
+        &:nth-child(3) {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}

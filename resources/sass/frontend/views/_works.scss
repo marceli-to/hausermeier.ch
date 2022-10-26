@@ -1,0 +1,89 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: views/works
+ * -----------------------------------------------------------------------------
+ */
+
+.content-works {
+  @extend %content;
+  padding-bottom: $space-xs;
+
+  @include bp-md() {
+    padding-bottom: $space-xl;
+  }
+
+  .work-items  {
+    margin-bottom: $space-xxl;
+    &.is-last {
+      margin-bottom: 0;
+    }
+  }
+
+  .work-items-list {
+    margin-bottom: $space-lg;
+
+    @include bp-md() {
+      margin-bottom: $space-xl;
+    }
+
+    &.is-last {
+      @include bp-md() {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .work-text-media {
+    @include font-size($fs-mds);
+    margin-bottom: $space-sm;
+
+    @include bp-md() {
+      margin-bottom: 0;
+    }
+
+    &.work-text-media--list {
+      border-top: 1px solid $color-black;
+      padding-top: $space-sm;
+    }
+
+    .icon-arrow-up-before {
+      &:before {
+        @include bp-md() {
+          top: 5px;
+        }
+      }
+    }
+  
+    figure {
+      margin-bottom: $space-xxs;
+    }
+
+    a {
+      display: inline;
+    }
+  }
+
+  .work-text {
+    @include font-size($fs-mds);
+    margin-bottom: $space-sm;
+    .icon-arrow-up-before {
+      &:before {
+        @include bp-md() {
+          top: 5px;
+        }
+      }
+    }
+
+  }
+
+  &.content-works--list {
+
+    h2 {
+      margin-bottom: $space-xs;
+    }
+  }
+
+  .work-text__info {
+    display: block;
+  }
+}

@@ -1,0 +1,140 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: views/news
+ * -----------------------------------------------------------------------------
+ */
+
+.content-news {
+  @extend %content;
+  padding-bottom: $space-xs;
+
+  @include bp-md() {
+    margin-top: 105px;
+    padding-bottom: $space-xl;
+  }
+
+  .news {
+    border-top: 1px solid $color-black;
+    display: flex;
+    @include font-size($fs-mds);
+    flex-flow: column;
+    margin-bottom: $space-sm;
+    padding-top: $space-xxs;
+
+    &.is-reverse {
+      border-top: 0;
+      border-bottom: 1px solid $color-black;
+      padding-bottom: $space-sm;
+    }
+
+    &.is-discourse {
+
+      @include bp-md() {
+        border-bottom: 0;
+        border-top: 0;
+      }
+    }
+
+    &.is-first {
+      border-top: 0;
+    }
+
+    &.is-last {
+      margin-bottom: 0;
+    }
+
+    .news__date {
+      order: 1;
+    }
+
+    .news__links {
+      margin-top: $space-sm;
+      > div {
+        margin-bottom: $space-xxs;
+      }
+
+      .icon-arrow-up {
+        &:after {
+          @include bp-md() {
+            top: 6px;
+          }
+        }
+      }
+    }
+
+    h3 {
+      @include font-bold();
+      @include font-size($fs-mds);
+      margin-bottom: $space-tiny;
+      order: 2;
+      width: 100%;
+    }
+
+    figure {
+      margin-bottom: $space-xxs;
+      order: 3;
+    }
+
+    a {
+      @extend %anchor-underline;
+    }
+
+    .news__description {
+      order: 4;
+
+      > p {
+        a {
+          @extend %icon-arrow-up;
+          &:after {
+            @include bp-md() {
+              top: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    .news__info {
+      @include font-size($fs-sm);
+      margin-top: $space-sm;
+
+      a {
+        @extend %icon-arrow-up-sm;
+      }
+    }
+
+    @include bp-md() {
+      margin-bottom: $space-lg;
+      width: calc(25% - 11.25px);
+
+      &.is-reverse {
+        padding-bottom: $space-xxl;
+      }
+      
+      &:nth-child(4n+4) {
+        margin-right: 0;
+      }
+
+      .news__date {
+        margin-bottom: $space-xxs;
+        order: 1;
+      }
+
+      .news__links {
+        margin-top: $space-md;
+      }
+      
+      figure {
+        order: 2;
+      }
+      
+      h3 {
+        order: 3;
+      }
+
+      .news__description {
+        order: 4;
+      }
+    }
+  }
+}

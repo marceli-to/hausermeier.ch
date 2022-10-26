@@ -1,0 +1,131 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/arrow-up
+ * -----------------------------------------------------------------------------
+ */
+
+%icon-arrow-up-before,
+.icon-arrow-up-before {
+  @extend %icon-ib;
+  margin-left: 15px;
+  position: relative;
+
+  @include bp-md() {
+    margin-left: 20px;
+  }
+
+  &:before {
+    background-image: url($url-images + 'arrow-up.svg');
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+    display: block;
+    height: 9px;
+    left: -15px;
+    position: absolute;
+    top: 6px;
+    width: 9px;
+
+    @include bp-md() {
+      top: 8px;
+      height: 12px;
+      left: -20px;
+      width: 12px;
+    }
+  }
+
+  &.is-sm {
+    &:before {
+      height: 6px;
+      left: -12px;
+      top: 9px;
+      width: 6px;
+
+      @include bp-md() {
+        height: 8px;
+        left: -16px;
+        top: 11px;
+        width: 8px;
+      }
+    }
+  }
+}
+
+%icon-arrow-up,
+.icon-arrow-up {
+  @extend %icon-ib;
+  position: relative;
+  margin-right: 20px;
+
+  @include bp-md() {
+    margin-right: 25px;
+  }
+
+  &:after {
+    background-image: url($url-images + 'arrow-up.svg');
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+    display: block;
+    height: 9px;
+    right: -15px;
+    position: absolute;
+    top: 6px;
+    width: 9px;
+
+    @include bp-md() {
+      top: 8px;
+      height: 12px;
+      right: -20px;
+      width: 12px;
+    }
+  }
+
+  &.is-sm {
+    &:after {
+      height: 6px;
+      right: -12px;
+      top: 9px;
+      width: 6px;
+
+      @include bp-md() {
+        height: 8px;
+        right: -16px;
+        top: 11px;
+        width: 8px;
+      }
+    }
+  }
+}
+
+%icon-arrow-up-sm,
+.icon-arrow-up-sm {
+  @extend %icon-arrow-up;
+  &:after {
+    height: 6px;
+    right: -12px;
+    top: 9px;
+    width: 6px;
+
+    @include bp-md() {
+      height: 8px;
+      right: -14px;
+      top: 8px;
+      width: 8px;
+    }
+  }
+
+  &.is-news {
+
+    &:after {
+      @include bp-md() {
+        height: 8px;
+        right: -14px;
+        top: 11px;
+        width: 8px;
+      }
+    }
+  }
+}

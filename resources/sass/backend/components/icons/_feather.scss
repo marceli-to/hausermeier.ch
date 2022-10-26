@@ -1,0 +1,11 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/edit
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-feather {
+  @extend %icon-dashboard;
+  background-image: url($url-icons + 'feather.svg');
+  display: block;
+}

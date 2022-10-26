@@ -1,0 +1,42 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/bio
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-bio {
+  @extend %icon-ib;
+  position: relative;
+
+  &:after {
+    background-image: url($url-images + 'chevron-down.svg');
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    bottom: 7px;
+    content: '';
+    display: block;
+    position: absolute;
+    height: 7px;
+    right: -17px;
+    width: 12px;
+
+    @include bp-md() {
+      bottom: 7px;
+      height: 8px;
+      right: -19px;
+      width: 13px;
+    }
+  }
+
+  @include bp-md() {
+    margin-top: $space-sm;
+  }
+
+  &.is-active {
+
+    &:after {
+      background-image: url($url-images + 'chevron-up.svg');
+    }
+  }
+}

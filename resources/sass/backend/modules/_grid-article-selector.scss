@@ -1,0 +1,36 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: modules/grid-article-selector
+ * -----------------------------------------------------------------------------
+ *
+ */
+
+.grid-article-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-bottom: 20px;
+}
+
+.grid-article-selector__item {
+  background-color: $color-white;
+  border: 2px solid #eeeeee;
+  display: block;
+  padding: 10px;
+  transition: background-color .12s ease-out;
+
+  &:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+
+  h2 {
+    @include font-size($fs-sm);
+    @include font-bold();
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0 !important;
+  }
+}
