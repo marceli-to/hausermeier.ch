@@ -79,3 +79,12 @@ php artisan view:clear &&
 rm app.tar.gz
 
 php artisan cache:clear && 
+
+
+Hoistpiont:
+
+https://admin.hostpoint.ch
+Control Panel
+
+Username: mail@hausermeier.ch
+Passwort: luLI02nda
