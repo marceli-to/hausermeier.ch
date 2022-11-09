@@ -18,7 +18,7 @@ class WorkPreviewStrategyProject implements FilterInterface
     if ($img && $img->coords_w && $img->coords_h)
     {
       return 
-        $image->crop(floor($img->coords_w), floor($img->coords_h), floor($img->coords_x), floor($img->coords_y))
+        $image->crop(floor(floatval($img->coords_w)), floor(floatval($img->coords_h)), floor(floatval($img->coords_x)), floor(floatval($img->coords_y)))
               ->fit($this->max_width, $this->max_height, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();

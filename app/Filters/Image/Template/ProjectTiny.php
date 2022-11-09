@@ -17,7 +17,7 @@ class ProjectTiny implements FilterInterface
     // Crop the image if coords are set
     if ($img && $img->coords_w && $img->coords_h)
     {
-      $image->crop(floor($img->coords_w), floor($img->coords_h), floor($img->coords_x), floor($img->coords_y));
+      $image->crop(floor(floatval($img->coords_w)), floor(floatval($img->coords_h)), floor(floatval($img->coords_x)), floor(floatval($img->coords_y)));
 
       $width  = $image->getWidth();
       $height = $image->getHeight();
