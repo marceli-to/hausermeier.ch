@@ -16,7 +16,6 @@
                 >
                   <label>Intro text *</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_intro.de"
                   ></tinymce-editor>
@@ -26,7 +25,6 @@
                 <div class="form-row">
                   <label>Text Spalte 1</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_column_1.de"
                   ></tinymce-editor>
@@ -34,7 +32,6 @@
                 <div class="form-row">
                   <label>Text Spalte 2</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_column_2.de"
                   ></tinymce-editor>
@@ -42,7 +39,6 @@
                 <div class="form-row">
                   <label>Text Spalte 3</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_column_3.de"
                   ></tinymce-editor>
@@ -83,7 +79,6 @@
                 <div class="form-row">
                   <label>Intro text</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_intro.en"
                   ></tinymce-editor>
@@ -91,7 +86,6 @@
                 <div class="form-row">
                   <label>Text Spalte 1</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_column_1.en"
                   ></tinymce-editor>
@@ -99,7 +93,6 @@
                 <div class="form-row">
                   <label>Text Spalte 2</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_column_2.en"
                   ></tinymce-editor>
@@ -107,7 +100,6 @@
                 <div class="form-row">
                   <label>Text Spalte 3</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="intro.text_column_3.en"
                   ></tinymce-editor>
@@ -214,7 +206,6 @@ export default {
 
       // tinymce config
       tinyConfig: tinyConfig,
-      tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
     };
   },
 

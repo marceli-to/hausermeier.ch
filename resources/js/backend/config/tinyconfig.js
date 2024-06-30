@@ -1,12 +1,13 @@
 export default {
-    skin_url: '/assets/backend/js/tinymce/skins/hame',
+    license_key: 'gpl',
+    skin_url: '/assets/backend/js/_tinymce/skins/hame',
     branding: false,
     menubar: false,
     statusbar: false,
-    external_plugins: {
-        link: '/assets/backend/js/tinymce/plugins/link/plugin.min.js',
-    },
-    toolbar: 'undo redo | bold | link | superscript | removeformat | styleselect',
+    // external_plugins: {
+    //     link: '/assets/backend/js/tinymce/plugins/link/plugin.min.js',
+    // },
+    toolbar: 'undo redo | bold | link | superscript | removeformat | styles',
     paste_as_text: true,
     height: "320px",
     style_formats_merge: false,

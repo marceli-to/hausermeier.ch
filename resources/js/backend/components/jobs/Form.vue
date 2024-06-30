@@ -25,7 +25,6 @@
                 >
                   <label>Beschreibung *</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="job.description.de"
                   ></tinymce-editor>
@@ -34,7 +33,6 @@
                 <div class="form-row is-last">
                   <label>Info</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="job.info.de"
                   ></tinymce-editor>
@@ -83,7 +81,6 @@
                 <div class="form-row">
                   <label>Beschreibung</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="job.description.en"
                   ></tinymce-editor>
@@ -91,7 +88,6 @@
                 <div class="form-row is-last">
                   <label>Info</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="job.info.en"
                   ></tinymce-editor>
@@ -194,7 +190,6 @@ export default {
 
       // TinyMCE
       tinyConfig: tinyConfig,
-      tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
     };
   },
 

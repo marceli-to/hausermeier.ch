@@ -16,7 +16,6 @@
                 >
                   <label>Adresse *</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="contact.address.de"
                   ></tinymce-editor>
@@ -29,7 +28,6 @@
                 >
                   <label>Impressum *</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="contact.imprint.de"
                   ></tinymce-editor>
@@ -70,7 +68,6 @@
                 <div class="form-row">
                   <label>Adresse</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="contact.address.en"
                   ></tinymce-editor>
@@ -78,7 +75,6 @@
                 <div class="form-row is-last">
                   <label>Impressum</label>
                   <tinymce-editor
-                    :api-key="tinyApiKey"
                     :init="tinyConfig"
                     v-model="contact.imprint.en"
                   ></tinymce-editor>
@@ -177,7 +173,6 @@ export default {
 
       // TinyMCE
       tinyConfig: tinyConfig,
-      tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
     };
   },
 
