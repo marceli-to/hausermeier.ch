@@ -60,11 +60,11 @@
   
       > div {
         background-color: $color-white;
-        height: calc(100% - #{$space-sm});
+        height: calc(100% -  #{$space-sm});
         left: 0;
         position: absolute;
         top: 0;
-        width: calc(100% - #{$space-sm});
+        width: calc(100% -  #{$space-sm});
               
         img {
           display: block;

@@ -54,8 +54,8 @@
 
 }
 
-$pos-left-end-sm: calc(100% - 254px);
-$pos-left-end-md: calc(100% - 434px);
+$pos-left-end-sm: calc(100% -  254px);
+$pos-left-end-md: calc(100% -  434px);
 $pos-left-end-lg: calc(((100% - 1440px)/2) + 1006px);
 $pos-top-end-sm:  10px;
 $pos-top-end-md:  30px;
@@ -174,7 +174,7 @@ $pos-top-end-lg:  30px;
 @keyframes move1_sm {
   0%   { 
     top: 50%;
-    left: calc(100% - 320px);
+    left: calc(100% -  320px);
   }
   100% { 
     left: $pos-left-end-sm;
@@ -184,7 +184,7 @@ $pos-top-end-lg:  30px;
 @keyframes move2_sm {
   0%   { 
     top: 70%;
-    left: calc(100% - 20px);
+    left: calc(100% -  20px);
   }
   100% { 
     left: $pos-left-end-sm;
@@ -194,7 +194,7 @@ $pos-top-end-lg:  30px;
 @keyframes move3_sm {
   0%   { 
     top: 45%;
-    left: calc(100% - 150px);
+    left: calc(100% -  150px);
   }
   100% { 
     left: $pos-left-end-sm;
@@ -204,7 +204,7 @@ $pos-top-end-lg:  30px;
 @keyframes move4_sm {
   0%   { 
     top: 25%;
-    left: calc(100% - 400px);
+    left: calc(100% -  400px);
   }
   100% { 
     left: $pos-left-end-sm;
@@ -214,7 +214,7 @@ $pos-top-end-lg:  30px;
 @keyframes move5_sm {
   0%   { 
     top: 85%;
-    left: calc(100% - 10px);
+    left: calc(100% -  10px);
   }
   100% { 
     left: $pos-left-end-sm;
@@ -224,7 +224,7 @@ $pos-top-end-lg:  30px;
 @keyframes move6_sm {
   0%   { 
     top: 75%;
-    left: calc(100% -200px);
+    left: calc(100% -  200px);
   }
   100% { 
     left: $pos-left-end-sm;
@@ -234,7 +234,7 @@ $pos-top-end-lg:  30px;
 @keyframes move7_sm {
   0%   { 
     top: 90%;
-    left: calc(100% - 90px);
+    left: calc(100% -  90px);
   }
   100% { 
     left: $pos-left-end-sm;
@@ -245,7 +245,7 @@ $pos-top-end-lg:  30px;
 @keyframes move1_md {
   0%   { 
     top: 50%;
-    left: calc(100% - 1500px);
+    left: calc(100% -  1500px);
   }
   100% { 
     left: $pos-left-end-md;
@@ -255,7 +255,7 @@ $pos-top-end-lg:  30px;
 @keyframes move2_md {
   0%   { 
     top: 70%;
-    left: calc(100% - 760px);
+    left: calc(100% -  760px);
   }
   100% { 
     left: $pos-left-end-md;
@@ -265,7 +265,7 @@ $pos-top-end-lg:  30px;
 @keyframes move3_md {
   0%   { 
     top: 45%;
-    left: calc(100% - 930px);
+    left: calc(100% -  930px);
   }
   100% { 
     left: $pos-left-end-md;
@@ -275,7 +275,7 @@ $pos-top-end-lg:  30px;
 @keyframes move4_md {
   0%   { 
     top: 25%;
-    left: calc(100% - 450px);
+    left: calc(100% -  450px);
   }
   100% { 
     left: $pos-left-end-md;
@@ -285,7 +285,7 @@ $pos-top-end-lg:  30px;
 @keyframes move5_md {
   0%   { 
     top: 85%;
-    left: calc(100% - 1240px);
+    left: calc(100% -  1240px);
   }
   100% { 
     left: $pos-left-end-md;
@@ -295,7 +295,7 @@ $pos-top-end-lg:  30px;
 @keyframes move6_md {
   0%   { 
     top: 35%;
-    left: calc(100% - 260px);
+    left: calc(100% -  260px);
   }
   100% { 
     left: $pos-left-end-md;
@@ -305,7 +305,7 @@ $pos-top-end-lg:  30px;
 @keyframes move7_md {
   0%   { 
     top: 90%;
-    left: calc(100% - 740px);
+    left: calc(100% -  740px);
   }
   100% { 
     left: $pos-left-end-md;
@@ -316,7 +316,7 @@ $pos-top-end-lg:  30px;
 @keyframes move1_lg {
   0%   { 
     top: 50%;
-    left: calc(100% - 1500px);
+    left: calc(100% -  1500px);
   }
   100% { 
     left: $pos-left-end-lg;
@@ -326,7 +326,7 @@ $pos-top-end-lg:  30px;
 @keyframes move2_lg {
   0%   { 
     top: 70%;
-    left: calc(100% - 460px);
+    left: calc(100% -  460px);
   }
   100% { 
     left: $pos-left-end-lg;
@@ -336,7 +336,7 @@ $pos-top-end-lg:  30px;
 @keyframes move3_lg {
   0%   { 
     top: 45%;
-    left: calc(100% - 930px);
+    left: calc(100% -  930px);
   }
   100% { 
     left: $pos-left-end-lg;
@@ -346,7 +346,7 @@ $pos-top-end-lg:  30px;
 @keyframes move4_lg {
   0%   { 
     top: 25%;
-    left: calc(100% - 450px);
+    left: calc(100% -  450px);
   }
   100% { 
     left: $pos-left-end-lg;
@@ -356,7 +356,7 @@ $pos-top-end-lg:  30px;
 @keyframes move5_lg {
   0%   { 
     top: 85%;
-    left: calc(100% - 1240px);
+    left: calc(100% -  1240px);
   }
   100% { 
     left: $pos-left-end-lg;
@@ -366,7 +366,7 @@ $pos-top-end-lg:  30px;
 @keyframes move6_lg {
   0%   { 
     top: 35%;
-    left: calc(100% - 260px);
+    left: calc(100% -  260px);
   }
   100% { 
     left: $pos-left-end-lg;
@@ -376,7 +376,7 @@ $pos-top-end-lg:  30px;
 @keyframes move7_lg {
   0%   { 
     top: 90%;
-    left: calc(100% - 740px);
+    left: calc(100% -  740px);
   }
   100% { 
     left: $pos-left-end-lg;

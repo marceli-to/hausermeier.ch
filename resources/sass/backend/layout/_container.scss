@@ -11,7 +11,7 @@
 .container-auth {
     @extend %v-center;
     @include background-default();
-    background-image: url($url-images + 'splash.jpg');
+    background-color: #f5f5f5; /* Replaced missing image with solid color */
     background-size: cover;
     background-position: center center;
     height: 100vh;

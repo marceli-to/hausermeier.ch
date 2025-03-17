@@ -11,9 +11,23 @@ window.moment = require('moment');
 
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.headers.common = {
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
-};
+
+// Set up an axios interceptor to add the auth token to every request
+window.axios.interceptors.request.use(config => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    // Make sure to set the Authorization header for every request
+    config.headers['Authorization'] = `Bearer ${token}`;
+    // For debugging only
+    // console.log('Request with token:', config.url);
+  } else {
+    // For debugging only
+    // console.log('Request without token:', config.url);
+  }
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
