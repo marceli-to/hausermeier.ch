@@ -14,7 +14,7 @@
 
     @if ($news->publishedImages)
       <figure>
-        <img src="/image/news/{{$news->publishedImages->name}}" alt="" class="">
+        <img src="/img/news/{{$news->publishedImages->name}}" alt="" class="">
       </figure>
     @endif
 

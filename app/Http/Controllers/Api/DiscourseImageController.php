@@ -6,20 +6,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class DiscourseImageController extends Controller
 {
   protected $discourseImage;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param DiscourseImage $discourseImage
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(DiscourseImage $discourseImage)
+  public function __construct(DiscourseImage $discourseImage, ImageCache $imageCache)
   {
     $this->discourseImage = $discourseImage;
+    $this->imageCache = $imageCache;
   }
 
     /**
@@ -122,18 +126,11 @@ class DiscourseImageController extends Controller
    * Remove cached version of the image
    *
    * @param DiscourseImage $discourseImage
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
-  private function removeCachedImage(DiscourseImage $image)
+  private function removeCachedImage(DiscourseImage $discourseImage)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\Discourse);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('discourse', $discourseImage->name);
   }
 }

@@ -16,15 +16,15 @@
         <h3>{{$e->title}}</h3>
         @if ($e->previewImage)
           <figure>
-            <a href="/image/lightbox/{{$e->previewImage->name}}" data-fancybox="gallery-{{$e->id}}" data-caption="{{$e->previewImage->caption}}">
-              <img src="/image/discourse/{{$e->previewImage->name}}" class="is-responsive" width="1600" height="1200" alt="{{$e->previewImage->caption}}">
+            <a href="/img/lightbox/{{$e->previewImage->name}}" data-fancybox="gallery-{{$e->id}}" data-caption="{{$e->previewImage->caption}}">
+              <img src="/img/discourse/{{$e->previewImage->name}}" class="is-responsive" width="1600" height="1200" alt="{{$e->previewImage->caption}}">
             </a>
           </figure>
         @endif
 
         @foreach($e->publishedImages as $img)
           @if ($img->is_preview == 0)
-            <a href="/image/lightbox/{{$img->name}}" data-fancybox="gallery-{{$e->id}}" data-caption="{{$img->caption}}"></a>
+            <a href="/img/lightbox/{{$img->name}}" data-fancybox="gallery-{{$e->id}}" data-caption="{{$img->caption}}"></a>
           @endif
         @endforeach
 

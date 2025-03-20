@@ -5,20 +5,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class TeamPortraitController extends Controller
 {
   protected $teamPortrait;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param TeamPortrait $teamPortrait
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(TeamPortrait $teamPortrait)
+  public function __construct(TeamPortrait $teamPortrait, ImageCache $imageCache)
   {
     $this->teamPortrait = $teamPortrait;
+    $this->imageCache = $imageCache;
   }
 
   /**
@@ -84,18 +88,11 @@ class TeamPortraitController extends Controller
    * Remove cached version of the image
    *
    * @param TeamPortrait $teamPortrait
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(TeamPortrait $teamPortrait)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $teamPortrait->name)->filter(new \App\Filters\Image\Template\Portrait);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('portrait', $teamPortrait->name);
   }
 }

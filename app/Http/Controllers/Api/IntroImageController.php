@@ -7,20 +7,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class IntroImageController extends Controller
 {
   protected $image;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param IntroImage $image
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(IntroImage $image)
+  public function __construct(IntroImage $image, ImageCache $imageCache)
   {
     $this->image = $image;
+    $this->imageCache = $imageCache;
   }
 
   /**
@@ -136,19 +140,12 @@ class IntroImageController extends Controller
   /**
    * Remove cached version of the image
    *
-   * @param IntroImage $introImage
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @param IntroImage $image
+   * @return void
    */
   private function removeCachedImage(IntroImage $image)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\Intro);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('intro', $image->name);
   }
 }

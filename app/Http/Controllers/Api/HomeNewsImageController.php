@@ -6,20 +6,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class HomeNewsImageController extends Controller
 {
   protected $homeNewsImage;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param HomeNewsImage $homeNewsImage
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(HomeNewsImage $homeNewsImage)
+  public function __construct(HomeNewsImage $homeNewsImage, ImageCache $imageCache)
   {
     $this->homeNewsImage = $homeNewsImage;
+    $this->imageCache = $imageCache;
   }
 
   /**
@@ -102,18 +106,11 @@ class HomeNewsImageController extends Controller
    * Remove cached version of the image
    *
    * @param HomeNewsImage $homeNewsImage
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(HomeNewsImage $image)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\News);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('news', $image->name);
   }
 }

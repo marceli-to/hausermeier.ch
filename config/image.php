@@ -4,17 +4,29 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Image Driver
+    | Default Image Driver
     |--------------------------------------------------------------------------
     |
-    | Intervention Image supports "GD Library" and "Imagick" to process images
-    | internally. You may choose one of them according to your PHP
-    | configuration. By default PHP's "GD Library" implementation is used.
+    | This option controls the default image driver that will be used by
+    | Intervention Image. This is separate from Laravel's "disk" configuration
+    | and specifies how the image manipulation will be performed.
     |
-    | Supported: "gd", "imagick"
+    | Supported: "\Intervention\Image\Drivers\Gd\Driver"
+    |           "\Intervention\Image\Drivers\Imagick\Driver"
     |
     */
 
-    'driver' => 'gd'
+    'driver' => \Intervention\Image\Drivers\Gd\Driver::class,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Image Cache Path
+    |--------------------------------------------------------------------------
+    |
+    | Specify the path where the cached images will be stored. This path
+    | will be used by the ImageCache service to store processed images.
+    |
+    */
+
+    'cache_path' => 'cache/images',
 ];

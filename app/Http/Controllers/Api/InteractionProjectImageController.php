@@ -6,20 +6,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class InteractionProjectImageController extends Controller
 {
   protected $interactionProjectImage;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param InteractionProjectImage $interactionProjectImage
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(InteractionProjectImage $interactionProjectImage)
+  public function __construct(InteractionProjectImage $interactionProjectImage, ImageCache $imageCache)
   {
     $this->interactionProjectImage = $interactionProjectImage;
+    $this->imageCache = $imageCache;
   }
 
     /**
@@ -121,18 +125,11 @@ class InteractionProjectImageController extends Controller
    * Remove cached version of the image
    *
    * @param InteractionProjectImage $interactionProjectImage
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(InteractionProjectImage $interactionProjectImage)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $interactionProjectImage->name)->filter(new \App\Filters\Image\Template\InteractionProject);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('interaction-project', $interactionProjectImage->name);
   }
 }

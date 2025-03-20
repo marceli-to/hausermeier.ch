@@ -7,20 +7,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class TeamImageController extends Controller
 {
   protected $image;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param TeamImage $image
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(TeamImage $image)
+  public function __construct(TeamImage $image, ImageCache $imageCache)
   {
     $this->image = $image;
+    $this->imageCache = $imageCache;
   }
 
   /**
@@ -134,18 +138,11 @@ class TeamImageController extends Controller
    * Remove cached version of the image
    *
    * @param TeamImage $image
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(TeamImage $image)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\Team);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('team', $image->name);
   }
 }

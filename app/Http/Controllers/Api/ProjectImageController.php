@@ -6,20 +6,24 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class ProjectImageController extends Controller
 {
   protected $projectImage;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param ProjectImage $projectImage
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(ProjectImage $projectImage)
+  public function __construct(ProjectImage $projectImage, ImageCache $imageCache)
   {
     $this->projectImage = $projectImage;
+    $this->imageCache = $imageCache;
   }
 
     /**
@@ -121,29 +125,15 @@ class ProjectImageController extends Controller
    * Remove cached version of the image
    *
    * @param ProjectImage $image
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(ProjectImage $image)
   {
-    $cache1 = new \Intervention\Image\ImageCache();
-    $img1 = $cache1->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\Project);
-    Cache::forget($img1->checksum());
-
-    $cache2 = new \Intervention\Image\ImageCache();
-    $img2 = $cache2->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\ProjectTiny);
-    Cache::forget($img2->checksum());
-
-    $cache3 = new \Intervention\Image\ImageCache();
-    $img3 = $cache3->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\WorkPreview);
-    Cache::forget($img3->checksum());
-
-    $cache4 = new \Intervention\Image\ImageCache();
-    $img4 = $cache4->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\Works);
-    Cache::forget($img4->checksum());
-
-    $cache5 = new \Intervention\Image\ImageCache();
-    $img5 = $cache5->make(storage_path('app/public/uploads/') . $image->name)->filter(new \App\Filters\Image\Template\ProjectPreview);
-    Cache::forget($img5->checksum());
+    // Clear all cached versions of the image using the new ImageCache service
+    $this->imageCache->clearCache('project', $image->name);
+    $this->imageCache->clearCache('project-tiny', $image->name);
+    $this->imageCache->clearCache('work-preview', $image->name);
+    $this->imageCache->clearCache('works', $image->name);
+    $this->imageCache->clearCache('project-preview', $image->name);
   }
 }

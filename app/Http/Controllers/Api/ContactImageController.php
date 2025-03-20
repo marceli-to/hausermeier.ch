@@ -5,20 +5,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class ContactImageController extends Controller
 {
   protected $contactImage;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param ContactImage $contactImage
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(ContactImage $contactImage)
+  public function __construct(ContactImage $contactImage, ImageCache $imageCache)
   {
     $this->contactImage = $contactImage;
+    $this->imageCache = $imageCache;
   }
 
   /**
@@ -84,18 +88,11 @@ class ContactImageController extends Controller
    * Remove cached version of the image
    *
    * @param ContactImage $contactImage
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(ContactImage $contactImage)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $contactImage->name)->filter(new \App\Filters\Image\Template\Contact);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('contact', $contactImage->name);
   }
 }

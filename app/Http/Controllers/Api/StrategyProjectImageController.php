@@ -6,20 +6,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class StrategyProjectImageController extends Controller
 {
   protected $strategyProjectImage;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param StrategyProjectImage $strategyProjectImage
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(StrategyProjectImage $strategyProjectImage)
+  public function __construct(StrategyProjectImage $strategyProjectImage, ImageCache $imageCache)
   {
     $this->strategyProjectImage = $strategyProjectImage;
+    $this->imageCache = $imageCache;
   }
 
     /**
@@ -121,18 +125,11 @@ class StrategyProjectImageController extends Controller
    * Remove cached version of the image
    *
    * @param StrategyProjectImage $strategyProjectImage
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(StrategyProjectImage $strategyProjectImage)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $strategyProjectImage->name)->filter(new \App\Filters\Image\Template\StrategyProject);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('strategy-project', $strategyProjectImage->name);
   }
 }

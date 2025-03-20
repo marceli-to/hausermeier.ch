@@ -1,47 +1,52 @@
 <?php
 namespace App\Filters\Image\Template;
-use Intervention\Image\Image;
-use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 use App\Models\ProjectImage;
+use App\Filters\Image\ImageFilenameExtractor;
 
-class ProjectPreview implements FilterInterface
+class ProjectPreview
 {
+  use ImageFilenameExtractor;
+  
   protected $max_width  = 1600;    
   protected $max_height = 1000;
 
-  public function applyFilter(Image $image)
+  public function applyFilter(ImageInterface $image)
   {
     $this->image = new \App\Models\ProjectImage;
-    $img = $this->image->where('name', '=', $image->basename)->get()->first();
+    $filename = $this->getFilenameFromImage($image);
+    $img = $this->image->where('name', '=', $filename)->get()->first();
     
     // Crop the image if coords are set
     if ($img && $img->coords_w && $img->coords_h)
     {
-      return 
-        $image->crop(floor(floatval($img->coords_w)), floor(floatval($img->coords_h)), floor(floatval($img->coords_x)), floor(floatval($img->coords_y)))
-              ->resize($this->max_width, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-        });
+      // First crop the image
+      $image = $image->crop(
+        width: floor(floatval($img->coords_w)),
+        height: floor(floatval($img->coords_h)),
+        offset_x: floor(floatval($img->coords_x ?? 0)),
+        offset_y: floor(floatval($img->coords_y ?? 0))
+      );
+      
+      // Then resize it (with aspect ratio) but don't upsize
+      return $image->scaleDown(width: $this->max_width);
     }
-
-    // Otherwise just resize the image
-    $width  = $image->getWidth();
-    $height = $image->getHeight();
-
-    // Resize landscape image
-    if ($width > $height && $width >= $this->max_width)
+    
+    // Otherwise use cover to match the original fit() method
+    $width = $image->width();
+    $height = $image->height();
+    
+    // In both landscape and portrait cases, the original uses fit()
+    // which is equivalent to cover() in v3
+    if (($width > $height && $width >= $this->max_width) || 
+        ($height >= $this->max_height))
     {
-      $image->fit($this->max_width, $this->max_height, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
+      return $image->coverDown(
+        width: $this->max_width, 
+        height: $this->max_height
+      );
     }
-    else if ($height >= $this->max_height)
-    {
-      $image->fit($this->max_width, $this->max_height, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
-    }
+    
     return $image;
   }
 }

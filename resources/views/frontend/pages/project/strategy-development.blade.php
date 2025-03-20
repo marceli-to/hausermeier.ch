@@ -16,7 +16,7 @@
     @if ($intro->images && isset($intro->images[0]))
       <div class="content-visual">
         <figure>
-          <img data-src="/image/intro/{{ $intro->images[0]->name }}" class="is-responsive lazyload" width="1600" height="1200" alt="{{ $intro->images[0]->caption }}">
+          <img data-src="/img/intro/{{ $intro->images[0]->name }}" class="is-responsive lazyload" width="1600" height="1200" alt="{{ $intro->images[0]->caption }}">
         </figure>
       </div>
     @endif
@@ -50,12 +50,12 @@
           @foreach($project->publishedImages as $img)
             @if ($loop->first)
               <figure>
-                <a href="/image/lightbox/{{$img->name}}" data-fancybox="gallery-{{$project->id}}" data-caption="{{$img->caption}}">
-                  <img data-src="/image/strategy-project/{{$img->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$img->caption}}">
+                <a href="/img/lightbox/{{$img->name}}" data-fancybox="gallery-{{$project->id}}" data-caption="{{$img->caption}}">
+                  <img data-src="/img/strategy-project/{{$img->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$img->caption}}">
                 </a>
               </figure> 
             @else
-              <a href="/image/lightbox/{{$img->name}}" data-fancybox="gallery-{{$project->id}}" data-caption="{{$img->caption}}"></a>
+              <a href="/img/lightbox/{{$img->name}}" data-fancybox="gallery-{{$project->id}}" data-caption="{{$img->caption}}"></a>
             @endif
           @endforeach
         </div>
@@ -102,7 +102,7 @@
             @if ($loop->first)
               <figure>
                 <a href="/image/project/{{$img->name}}" data-fancybox="gallery" data-caption="{{$img->caption}}">
-                  <img data-src="/image/project/{{$img->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$img->caption}}">
+                  <img data-src="/img/project/{{$img->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$img->caption}}">
                 </a>
               </figure> 
             @else

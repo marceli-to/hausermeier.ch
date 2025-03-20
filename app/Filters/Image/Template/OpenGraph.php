@@ -1,33 +1,31 @@
 <?php
 namespace App\Filters\Image\Template;
-use Intervention\Image\Image;
-use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 use App\Models\ProjectImage;
 
-class OpenGraph implements FilterInterface
+class OpenGraph
 {
   protected $max_width  = 1500;    
   protected $max_height = 1500;
 
-  public function applyFilter(Image $image)
+  public function applyFilter(ImageInterface $image)
   {
-    // Otherwise just resize the image
-    $width  = $image->getWidth();
-    $height = $image->getHeight();
+    // Get image dimensions
+    $width  = $image->width();
+    $height = $image->height();
 
     // Resize landscape image
     if ($width > $height && $width >= $this->max_width)
     {
-      $image->resize($this->max_width, null, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
+      return $image->scale(width: $this->max_width);
     }
+    // Resize portrait image
     else if ($height >= $this->max_height)
     {
-      $image->resize(null, $this->max_height, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
+      return $image->scale(height: $this->max_height);
     }
+    
+    // Return original image if no resizing needed
     return $image;
   }
 }

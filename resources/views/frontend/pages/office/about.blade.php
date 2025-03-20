@@ -15,14 +15,14 @@
       <div class="content-visual">
         @if (isset($partner_images[0]))
           <figure>
-            <img data-src="/image/team/{{$partner_images[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$partner_images[0]->caption}}">
+            <img data-src="/img/team/{{$partner_images[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$partner_images[0]->caption}}">
           </figure>
         @endif
       </div>
       <div class="content-visual hide-sm">
         @if (isset($employee_images[0]))
           <figure>
-            <img data-src="/image/team/{{$employee_images[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$employee_images[0]->caption}}">
+            <img data-src="/img/team/{{$employee_images[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$employee_images[0]->caption}}">
           </figure>
         @endif
       </div>
@@ -45,7 +45,7 @@
                   <div class="biography js-bio" style="display:none">
                     @if (isset($p->publishedPortrait[0]))
                       <figure>  
-                        <img src="/image/portrait/{{$p->publishedPortrait[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$p->publishedPortrait[0]->name}}">
+                        <img src="/img/portrait/{{$p->publishedPortrait[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$p->publishedPortrait[0]->name}}">
                       </figure>
                     @endif
                     {!! $p->biography !!}
@@ -60,12 +60,10 @@
       <div class="content-visual hide-md">
         @if (isset($employee_images[0]))
           <figure>
-            <img data-src="/image/team/{{$employee_images[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$employee_images[0]->caption}}">
+            <img data-src="/img/team/{{$employee_images[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$employee_images[0]->caption}}">
           </figure>
         @endif
       </div>
-
-
     </div>
     <div>
       @if ($employee_data)
@@ -96,7 +94,7 @@
   @if ($profile_image)
     <div class="content-visual">
       <figure>
-        <img data-src="/image/profile/{{ $profile_image->name }}" class="is-responsive lazyload" width="1600" height="1200" alt="{{ $profile_image->caption }}">
+        <img data-src="/img/profile/{{ $profile_image->name }}" class="is-responsive lazyload" width="1600" height="1200" alt="{{ $profile_image->caption }}">
       </figure>
     </div>
   @endif

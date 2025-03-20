@@ -10,7 +10,7 @@
     @if ($intro->images[0])
       <div class="content-visual">
         <figure>
-          <img src="/image/intro/{{ $intro->images[0]->name }}" class="is-responsive" width="1600" height="1200" alt="{{ $intro->images[0]->caption }}">
+          <img src="/img/intro/{{ $intro->images[0]->name }}" class="is-responsive" width="1600" height="1200" alt="{{ $intro->images[0]->caption }}">
         </figure>
       </div>
     @endif
@@ -47,7 +47,7 @@
                 <figure>
                   <a href="{{$interaction->video}}"  data-fancybox="video" data-caption="{{$img->caption}}">
                     <span class="is-video">
-                      <img src="/image/interaction-project/{{$img->name}}" class="is-responsive" width="1600" height="1200" alt="{{$img->caption}}">
+                      <img src="/img/interaction-project/{{$img->name}}" class="is-responsive" width="1600" height="1200" alt="{{$img->caption}}">
                     </span>
                   </a>
                 </figure> 
@@ -57,12 +57,12 @@
             @foreach($interaction->publishedImages as $img)
               @if ($loop->first)
                 <figure>
-                  <a href="/image/lightbox/{{$img->name}}" data-fancybox="gallery-{{$interaction->id}}" data-caption="{{$img->caption}}">
-                    <img src="/image/interaction-project/{{$img->name}}" class="is-responsive" width="1600" height="1200" alt="{{$img->caption}}">
+                  <a href="/img/lightbox/{{$img->name}}" data-fancybox="gallery-{{$interaction->id}}" data-caption="{{$img->caption}}">
+                    <img src="/img/interaction-project/{{$img->name}}" class="is-responsive" width="1600" height="1200" alt="{{$img->caption}}">
                   </a>
                 </figure> 
               @else
-                <a href="/image/lightbox/{{$img->name}}" data-fancybox="gallery-{{$interaction->id}}" data-caption="{{$img->caption}}"></a>
+                <a href="/img/lightbox/{{$img->name}}" data-fancybox="gallery-{{$interaction->id}}" data-caption="{{$img->caption}}"></a>
               @endif
             @endforeach
           @endif

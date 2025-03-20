@@ -5,20 +5,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageCache;
 
 class JobImageController extends Controller
 {
   protected $jobImage;
+  protected $imageCache;
   
   /**
    * Constructor
    * 
    * @param JobImage $jobImage
+   * @param ImageCache $imageCache
    */
 
-  public function __construct(JobImage $jobImage)
+  public function __construct(JobImage $jobImage, ImageCache $imageCache)
   {
     $this->jobImage = $jobImage;
+    $this->imageCache = $imageCache;
   }
 
   /**
@@ -84,18 +88,11 @@ class JobImageController extends Controller
    * Remove cached version of the image
    *
    * @param JobImage $jobImage
-   * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @return void
    */
   private function removeCachedImage(JobImage $jobImage)
   {
-    // Get an instance of the ImageCache class
-    $imageCache = new \Intervention\Image\ImageCache();
-
-    // Get a cached image from it and apply all of your templates / methods
-    $image = $imageCache->make(storage_path('app/public/uploads/') . $jobImage->name)->filter(new \App\Filters\Image\Template\Job);
-
-    // Remove the image from the cache by using its internal checksum
-    Cache::forget($image->checksum());
+    // Clear the cached image using the new ImageCache service
+    $this->imageCache->clearCache('job', $jobImage->name);
   }
 }

@@ -28,10 +28,10 @@
                   <figure>
                     @if (!$w->is_strategy_project && $w->has_detail)
                       <a href="{{ route('page.project.show', ['slug' => AppHelper::slug($w->name), 'project' => $w->id]) }}" title="{{ $w->name }}, {{ $w->location }}">
-                        <img data-src="/image/work-preview/{{$w->previewImage->name}}" class="is-responsive lazyload" width="1000" height="698" alt="{{$w->previewImage->caption}}">
+                        <img data-src="/img/work-preview/{{$w->previewImage->name}}" class="is-responsive lazyload" width="1000" height="698" alt="{{$w->previewImage->caption}}">
                       </a>
                     @else
-                      <img data-src="/image/work-preview-se/{{$w->previewImage->name}}" class="is-responsive lazyload" width="1000" height="698" alt="{{$w->previewImage->caption}}">
+                      <img data-src="/img/work-preview-se/{{$w->previewImage->name}}" class="is-responsive lazyload" width="1000" height="698" alt="{{$w->previewImage->caption}}">
                     @endif
                   </figure>
                 @endif

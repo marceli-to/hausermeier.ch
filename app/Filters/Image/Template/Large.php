@@ -1,39 +1,37 @@
 <?php
 namespace App\Filters\Image\Template;
-use Intervention\Image\Image;
-use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 
-class Large implements FilterInterface
+class Large
 {
   /**
    * Maximum width for large landscape images
    */    
   protected $max_width = 1600;    
-
   /**
    * Maximum height for large portrait images
    */    
   protected $max_height = 900;
   
-  public function applyFilter(Image $image)
+  public function applyFilter(ImageInterface $image)
   {
     // Get width and height
-    $width  = $image->getWidth();
-    $height = $image->getHeight();
-
+    $width  = $image->width();
+    $height = $image->height();
+    
     // Resize landscape image
     if ($width > $height && $width >= $this->max_width)
     {
-      $image->resize($this->max_width, null, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
+      return $image->scale(width: $this->max_width);
     }
-    else if ($height >= $this->max_height)
+    
+    // Resize portrait image
+    if ($height > $width && $height >= $this->max_height)
     {
-      $image->resize(null, $this->max_height, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
+      return $image->scale(height: $this->max_height);
     }
+    
+    // Return original image if no resizing needed
     return $image;
   }
 }

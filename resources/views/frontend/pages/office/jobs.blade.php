@@ -16,7 +16,7 @@
         <div class="content-visual">
           @if (isset($job->publishedImages[0]))
             <figure>
-              <img src="/image/job/{{$job->publishedImages[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$job->publishedImages[0]->caption}}">
+              <img src="/img/job/{{$job->publishedImages[0]->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$job->publishedImages[0]->caption}}">
             </figure>
           @endif
         </div>  

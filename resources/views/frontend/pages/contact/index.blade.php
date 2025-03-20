@@ -9,7 +9,7 @@
   <div class="grid-2x1">
     <div class="content-visual">
       <figure>
-        <img data-src="/image/contact/{{$image->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$image->caption}}">
+        <img data-src="/img/contact/{{$image->name}}" class="is-responsive lazyload" width="1600" height="1200" alt="{{$image->caption}}">
       </figure>
     </div>
     <div class="map">

@@ -165,13 +165,12 @@
           <a href="{{ route('page.project.show', ['slug' => AppHelper::slug($browse['next']->name), 'project' => $browse['next']->id]) }}" title="{{$browse['next']->name}}, {{$browse['next']->location}}">
             <h3>{{$browse['next']->name}}, {{$browse['next']->location}}</h3>
             @if ($browse['next']->previewImage)
-              <img src="/image/work-preview/{{$browse['next']->previewImage->name}}" class="is-responsive" height="400" width="800">
+              <img src="/img/work-preview/{{$browse['next']->previewImage->name}}" class="is-responsive" height="400" width="800">
             @endif
           </a>
         </figure>
       </div>
-     @endif
+    @endif
   </div>
 </section>
 @endsection
-

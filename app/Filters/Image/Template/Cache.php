@@ -1,40 +1,40 @@
 <?php
 namespace App\Filters\Image\Template;
-use Intervention\Image\Image;
-use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 use App\Models\ProjectImage;
 
-class Cache implements FilterInterface
+class Cache
 {
   protected $max_width  = 2000;    
   protected $max_height = 1250;
-
   protected $size = null;
 
-  public function __construct($size)
+  public function __construct($size = null)
   {
     $this->size = $size;
   }
 
-  public function applyFilter(Image $image)
+  public function applyFilter(ImageInterface $image)
   {
-    // Otherwise just resize the image
-    $width  = $image->getWidth();
-    $height = $image->getHeight();
+    // Get image dimensions
+    $width  = $image->width();
+    $height = $image->height();
 
     // Resize landscape image
     if ($width > $height && $width >= $this->max_width)
     {
-      $image->resize($this->size, null, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
+      return $image->scaleDown(
+        width: $this->size
+      );
     }
+    // Resize portrait image
     else if ($height >= $this->max_height)
     {
-      $image->resize(null, $this->size, function ($constraint) {
-        return $constraint->aspectRatio();
-      });
+      return $image->scaleDown(
+        height: $this->size
+      );
     }
+    
     return $image;
   }
 }
