@@ -18,20 +18,6 @@ class Cache implements FilterInterface
 
   public function applyFilter(Image $image)
   {
-    // $this->image = new \App\Models\ProjectImage;
-    // $img = $this->image->where('name', '=', $image->basename)->get()->first();
-    
-    // // Crop the image if coords are set
-    // if ($img && $img->coords_w && $img->coords_h)
-    // {
-    //   return 
-    //     $image->crop(floor(floatval($img->coords_w)), floor(floatval($img->coords_h)), floor(floatval($img->coords_x)), floor(floatval($img->coords_y)))
-    //           ->resize($this->max_width, null, function ($constraint) {
-    //             $constraint->aspectRatio();
-    //             $constraint->upsize();
-    //           });
-    // }
-
     // Otherwise just resize the image
     $width  = $image->getWidth();
     $height = $image->getHeight();

@@ -14,7 +14,7 @@
         <h2>
           <a href="javascript:;" class="btn-collapsible js-clpsbl-btn">
             @if (!$work[0]->is_strategy_project)
-              {{$work[0]->program->title}}
+              {{ isset($work[0]->program->title) ? $work[0]->program->title : null }}
             @else
               Strategie & Entwicklung
             @endif
@@ -77,7 +77,7 @@
           @foreach($column as $work)
             <h2>
               @if (!$work[0]['is_strategy_project'])
-                {{$work[0]['program']['title']['de']}}
+                {{ isset($work[0]['program']['title']['de']) ? $work[0]['program']['title']['de'] : null }}
               @else
                 Strategie & Entwicklung
               @endif

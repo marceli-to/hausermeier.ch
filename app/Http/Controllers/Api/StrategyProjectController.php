@@ -98,8 +98,8 @@ class StrategyProjectController extends Controller
           'strategy_project_id' => $strategyProject->id,
           'name' => $i['name'],
           'caption' => [
-            'de' => $i['caption']['de'],
-            'en' => $i['caption']['en'],    
+            'de' => $i['caption']['de'] ?? NULL,
+            'en' => $i['caption']['en'] ?? NULL,    
           ],
           'coords_w' => $i['coords_w'] ? round($i['coords_w'], 12) : NULL,
           'coords_h' => $i['coords_h'] ? round($i['coords_h'], 12) : NULL,
@@ -168,8 +168,8 @@ class StrategyProjectController extends Controller
             'strategy_project_id' => $strategyProject->id,
             'name' => $i['name'],
             'caption' => [
-              'de' => $i['caption']['de'],
-              'en' => $i['caption']['en']
+              'de' => $i['caption']['de'] ?? NULL,
+              'en' => $i['caption']['en'] ?? NULL
             ],
             'coords_w' => $i['coords_w'] ? round($i['coords_w'], 12) : NULL,
             'coords_h' => $i['coords_h'] ? round($i['coords_h'], 12) : NULL,

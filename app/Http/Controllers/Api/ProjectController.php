@@ -112,8 +112,8 @@ class ProjectController extends Controller
           'project_id'  => $project->id,
           'name'        => $i['name'],
           'caption' => [
-            'de' => $i['caption']['de'],
-            'en' => $i['caption']['en'],    
+            'de' => $i['caption']['de'] ?? NULL,
+            'en' => $i['caption']['en'] ?? NULL,    
           ],
           'is_preview_works'      => $i['is_preview_works'],
           'is_lightbox'           => $i['is_lightbox'],
@@ -138,8 +138,8 @@ class ProjectController extends Controller
           'project_id'  => $project->id,
           'name'        => $i['name'],
           'caption' => [
-            'de' => $i['caption']['de'],
-            'en' => $i['caption']['en'],    
+            'de' => $i['caption']['de'] ?? NULL,
+            'en' => $i['caption']['en'] ?? NULL,    
           ],
           'publish' => $i['publish'],
         ]);
@@ -213,8 +213,8 @@ class ProjectController extends Controller
             'project_id' => $project->id,
             'name' => $i['name'],
             'caption' => [
-              'de' => $i['caption']['de'],
-              'en' => $i['caption']['en']
+              'de' => $i['caption']['de'] ?? NULL,
+              'en' => $i['caption']['en'] ?? NULL
             ],
             'publish'                 => $i['publish'] ? $i['publish'] : 0,
             'is_preview_works'        => $i['is_preview_works'] ? $i['is_preview_works'] : 0,
@@ -241,8 +241,8 @@ class ProjectController extends Controller
             'project_id' => $project->id,
             'name' => $i['name'],
             'caption' => [
-              'de' => $i['caption']['de'],
-              'en' => $i['caption']['en']
+              'de' => $i['caption']['de'] ?? NULL,
+              'en' => $i['caption']['en'] ?? NULL
             ],
             'publish' => $i['publish'] ? $i['publish'] : 0,
           ]

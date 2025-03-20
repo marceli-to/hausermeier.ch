@@ -1,62 +1,63 @@
 <?php
 namespace App\Http\Controllers;
-use Intervention\Image\ImageCacheController;
-use Intervention\Image\ImageManager;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
-use Config;
 
-class ImageController extends ImageCacheController
+class ImageController extends Controller
 {
-  protected $size;
+    /**
+     * Process and serve an image with the given template
+     *
+     * @param string $template
+     * @param string $filename
+     * @return \Illuminate\Http\Response
+     */
+    public function serve($template, $filename)
+    {
+        // Get the image path
+        $path = storage_path('app/public/uploads/') . $filename;
 
-  /**
-   * Get HTTP response of either original image file or
-   * template applied file.
-   *
-   * @param  string $template
-   * @param  string $filename
-   * @return Illuminate\Http\Response
-   */
+        // Check if file exists
+        if (!file_exists($path)) {
+            abort(404);
+        }
 
-  public function getResponse($template, $filename, $size = NULL)
-  {
-    if ($size) $this->size = $size;
-    
-    switch (strtolower($template)) {
-      case 'original':
-        return $this->getOriginal($filename);
+        // Create image instance
+        $image = Image::make($path);
 
-      case 'download':
-        return $this->getDownload($filename);
+        // Apply filter based on template
+        $filterClass = $this->getFilterClass($template);
+        if ($filterClass) {
+            $filter = new $filterClass;
+            $image = $filter->applyFilter($image);
+        }
 
-      default:
-        return $this->getImage($template, $filename);
+        // Return the processed image
+        return $image->response();
     }
-  }
 
-  /**
-   * Returns corresponding template object from given template name
-   *
-   * @param  string $template
-   * @return mixed
-   */
-  protected function getTemplate($template)
-  {
-    $template = config("imagecache.templates.{$template}");
+    /**
+     * Get the filter class for a given template
+     *
+     * @param string $template
+     * @return string|null
+     */
+    protected function getFilterClass($template)
+    {
+        $filters = [
+            'project' => \App\Filters\Image\Template\Project::class,
+            'strategy-project' => \App\Filters\Image\Template\StrategyProject::class,
+            'team' => \App\Filters\Image\Template\Team::class,
+            'news' => \App\Filters\Image\Template\News::class,
+            'portrait' => \App\Filters\Image\Template\Portrait::class,
+            'contact' => \App\Filters\Image\Template\Contact::class,
+            'intro' => \App\Filters\Image\Template\Intro::class,
+            'profile' => \App\Filters\Image\Template\Profile::class,
+            'discourse' => \App\Filters\Image\Template\Discourse::class,
+            'job' => \App\Filters\Image\Template\Job::class,
+            'interaction-project' => \App\Filters\Image\Template\InteractionProject::class,
+        ];
 
-    switch (true) {
-    // closure template found
-    case is_callable($template):
-      return $template;
-
-    // filter template found
-    case class_exists($template):
-      return new $template($this->size);
-
-    default:
-      // template not found
-      abort(404);
-      break;
+        return $filters[$template] ?? null;
     }
-  }
 }
